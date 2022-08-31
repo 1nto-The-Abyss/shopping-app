@@ -1,3 +1,8 @@
 module.exports = {
-  transpileDependencies: true
+  transpileDependencies: true,
+  configureWebpack: { 
+    resolve: {
+    
+    }
+  }
 }

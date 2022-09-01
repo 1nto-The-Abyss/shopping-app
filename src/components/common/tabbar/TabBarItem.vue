@@ -1,9 +1,9 @@
 <template>
   <div class="tab-bar-item" @click="itemClick()">
-    <div v-if="!isActive">
+    <div v-if="!isActive" >
       <slot name="item-icon"/>
     </div>
-    <div v-else>
+    <div v-else style="color:#ff0000">
       <slot name="item-icon-active"/>
     </div>
     <div :style="activeStyle">
@@ -47,14 +47,8 @@ export default {
   text-align: center;
   height: 49px;
   font-size: 12px;
-  img {
-    width: 20px;
-    height: 20px;
-    margin: 5px 0;
-    vertical-align: middle;
-  }
-}
-.active {
-  color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 </style>

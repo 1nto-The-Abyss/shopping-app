@@ -5,10 +5,14 @@
         <!-- 首页 -->
         <tab-bar-item path="/home">
           <template #item-icon>
-            <img src="@/assets/img/tabbar/home.svg" alt="">
+            <svg class="iconfont" aria-hidden="true">
+              <use xlink:href="#icon-shouye"></use>
+            </svg>
           </template>
           <template #item-icon-active>
-            <img src="@/assets/img/tabbar/home_active.svg" alt="">
+            <svg class="iconfont" aria-hidden="true">
+              <use xlink:href="#icon-shouye-1"></use>
+            </svg>
           </template>
           <template #item-text>
             <div>首页</div>
@@ -17,10 +21,14 @@
         <!-- 分类 -->
         <tab-bar-item path="/category">
           <template #item-icon>
-            <img src="@/assets/img/tabbar/category.svg" alt="">
+            <svg class="iconfont" aria-hidden="true">
+              <use xlink:href="#icon-fenlei"></use>
+            </svg>
           </template>
           <template #item-icon-active>
-            <img src="@/assets/img/tabbar/category_active.svg" alt="">
+            <svg class="iconfont" aria-hidden="true">
+              <use xlink:href="#icon-fenlei-1"></use>
+            </svg>
           </template>
           <template #item-text>
             <div>分类</div>
@@ -29,10 +37,14 @@
         <!-- 购物车 -->
         <tab-bar-item path="/shopcart">
           <template #item-icon>
-            <img src="@/assets/img/tabbar/shopcart.svg" alt="">
+            <svg class="iconfont" aria-hidden="true">
+              <use xlink:href="#icon-gouwuche"></use>
+            </svg>
           </template>
           <template #item-icon-active>
-            <img src="@/assets/img/tabbar/shopcart_active.svg" alt="">
+            <svg class="iconfont" aria-hidden="true">
+              <use xlink:href="#icon-gouwuche-1"></use>
+            </svg>
           </template>
           <template #item-text>
             <div>购物车</div>
@@ -41,10 +53,14 @@
         <!-- 我的 -->
         <tab-bar-item path="/profile">
           <template #item-icon>
-            <img src="@/assets/img/tabbar/profile.svg" alt="">
+            <svg class="iconfont" aria-hidden="true">
+              <use xlink:href="#icon-wode"></use>
+            </svg>
           </template>
           <template #item-icon-active>
-            <img src="@/assets/img/tabbar/profile_active.svg" alt="">
+            <svg class="iconfont" aria-hidden="true">
+              <use xlink:href="#icon-wode-1"></use>
+            </svg>
           </template>
           <template #item-text>
             <div>我的</div>

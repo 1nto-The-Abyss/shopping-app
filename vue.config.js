@@ -9,15 +9,16 @@ module.exports = {
           }
         }
       },
-      // postcss: {
-      //   plugins: [
-      //     // 设计稿宽度的1/10，一般移动端为375px
-      //     require('postcss-pxtorem')({
-      //       rootValue: 37.5,
-      //       propList: ['*']
-      //     })
-      //   ]
-      // }
-    }
+      postcss: {
+        postcssOptions: {
+          plugins: [
+            require('postcss-pxtorem')({
+              rootValue: 37.5,
+              propList: ['*']
+            })
+          ]
+        }
+      }
+    },
   }
 }

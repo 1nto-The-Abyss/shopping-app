@@ -11,17 +11,17 @@ export function request(config) {
   // 2.1请求拦截
   instance.interceptors.request.use(config => {
     return config
-  },err => {
-
+  }, err => {
+      // console.log(err);
   })
 
   // 2.2响应拦截
   instance.interceptors.response.use(res => {
     return res.data
-  },err => {
+  }, err => {
     console.log(err);
   })
 
   // 3.发送真正的网络请求
-  return instance(err)
+  return instance(config)
 }

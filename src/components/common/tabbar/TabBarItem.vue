@@ -3,7 +3,7 @@
     <div v-if="!isActive" >
       <slot name="item-icon"/>
     </div>
-    <div v-else style="color:#ff0000">
+    <div v-else style="color:#ff8198">
       <slot name="item-icon-active"/>
     </div>
     <div :style="activeStyle">
@@ -19,7 +19,7 @@ export default {
     path: String,
     activeColor: {
       type: String,
-      default: 'red'
+      default: "#ff8198"
     }
   },
   data () {

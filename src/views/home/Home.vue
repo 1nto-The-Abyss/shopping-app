@@ -5,25 +5,38 @@
         蘑菇街
       </div>
     </nav-bar>
+    <!-- 首页轮播图 -->
     <van-swipe :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(item,index) in banner" :key="index">
         <img v-lazy="item.image">
       </van-swipe-item>
     </van-swipe>
+    <!-- 首页推荐模块 -->
+    <home-recommend :recommends="recommends"></home-recommend>
+    <!-- 本周流行 -->
+    <home-feature></home-feature>
+    <!-- 分类 -->
+    <home-tab></home-tab>
   </div>
 </template>
 <script>
 import NavBar from "@/components/common/navbar/NavBar"
-import {  _getHomeMultidata } from "@/network/home";
+import HomeRecommend from "./components/HomeRecommend"
+import HomeFeature from "./components/HomeFeature"
+import HomeTab from "./components/HomeTab"
+import {  _getHomeMultidata, _getHomeGoods } from "@/network/home";
 export default {
   components: {
-    NavBar
+    NavBar,
+    HomeRecommend,
+    HomeFeature,
+    HomeTab
   },
   props: {},
   data () {
     return {
       banner: [], // 轮播图数据
-      recommends: [], // 分类数据
+      recommends: [], // 推荐数据
       multidata: "",
     };
   },
@@ -34,29 +47,29 @@ export default {
     _getHomeMultidata().then(res => {
       this.banner = res.data.banner.list
       this.recommends = res.data.recommend.list
-    })
+    });
   }
 }
 </script>
 <style lang="less" scoped>
 #home {
-  height: 100vh;
+  height: 150vh;
   position: relative;
+  margin-bottom: 49px;
 }
-.home-nav {
+.nav-bar {
   background-color: @pink;
   color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
-.van-swipe {
+:deep .van-swipe {
+  .van-swipe__track {
+    height: 200px;
+  }
   img{
     width: 100%;
   }
 }
-  .my-swipe .van-swipe-item {
-    color: #fff;
-    font-size: 20px;
-    line-height: 150px;
-    text-align: center;
-    background-color: #39a9ed;
-  }
 </style>

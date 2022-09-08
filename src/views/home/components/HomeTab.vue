@@ -1,21 +1,29 @@
 <template>
   <div>
-    <van-tabs v-model="activeName" @click="tabClick"  >
+    <van-tabs v-model="activeName">
       <van-tab 
         v-for="(item,index) in hometabs" 
         :key="index" 
         :title="item.title"
         :name="item.type"
       >
-      <div 
-        v-for="(item1,index1) in item.list" 
-        :key="index1"
-        class="tab-item"
-        ref="goodsList"
+      <van-list 
+        v-model="loading" 
+        :finished="finished" 
+        finished-text="没有更多了"
+        @load="onLoad(item)"
+        :immediate-check = "false"
       >
-        <img :src="item1.show.img" alt="">
-        <p class="title">{{item1.title}}</p>
-      </div>
+        <div 
+          v-for="(item1,index1) in item.list" 
+          :key="index1"
+          class="tab-item"
+          ref="goodsList"
+        >
+          <img :src="item1.show.img" alt="">
+          <p class="title">{{item1.title}}</p>
+        </div>
+      </van-list>
       </van-tab>
     </van-tabs>
   </div>
@@ -50,41 +58,44 @@ export default {
         }
       ], // 分类数据
       activeName: "pop",
+      loading: false,
+      finished: false
     };
   },
   methods: {
-    tabClick(name) {
-
-    },
-    async getTabList(item) {
+    getTabList(item) {
       const params = {
         type: item.type,
         page: item.page
       };
-      await _getHomeGoods(params).then(res => {
-        item.list = res.data.list
+      _getHomeGoods(params).then(res => {
+        if(res.success) {
+          item.list.push(...res.data.list) 
+        } else {
+          this.finished = true
+        }
+          this.loading = false
       });
     },
-    lazyLoading(e) {
-      // const scrollTop = e.taregt.scrollTop
-      // const  
-    }
+    onLoad(item) {
+      item.page++
+      this.getTabList(item)
+    },
   },
   watch: {},
   computed: {
   },
-   created() {
+  created() {
     for(let item of this.hometabs) {
       this.getTabList(item)
     }
   },
   mounted() {
-    window.addEventListener('scroll',this.lazyLoading)
   }
 }
 </script>
 <style lang="less" scoped>
-.van-tab__pane {
+.van-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -104,5 +115,9 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+}
+:deep .van-tabs__wrap {
+  position: sticky;
+  top: 44px;
 }
 </style>

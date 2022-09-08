@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "587073",
+      "name": "rocket",
+      "font_class": "rocket",
+      "unicode": "e7d9",
+      "unicode_decimal": 59353
+    },
+    {
+      "icon_id": "25672064",
+      "name": "蘑菇街",
+      "font_class": "mogujie",
+      "unicode": "feb1",
+      "unicode_decimal": 65201
+    },
+    {
       "icon_id": "15077423",
       "name": "分类",
       "font_class": "fenlei",

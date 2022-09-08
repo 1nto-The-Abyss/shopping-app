@@ -5,7 +5,8 @@ import {
   Swipe, 
   SwipeItem,
   Tab,
-  Tabs
+  Tabs,
+  List
 } from 'vant'
 
 export default function vant() {
@@ -14,4 +15,5 @@ export default function vant() {
     .use(SwipeItem)
     .use(Tab)
     .use(Tabs)
+    .use(List)
 }

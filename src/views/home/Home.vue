@@ -17,10 +17,12 @@
     <home-feature></home-feature>
     <!-- 分类 -->
     <home-tab></home-tab>
+    <to-top></to-top>
   </div>
 </template>
 <script>
 import NavBar from "@/components/common/navbar/NavBar"
+import ToTop from "@/components/common/totop/ToTop"
 import HomeRecommend from "./components/HomeRecommend"
 import HomeFeature from "./components/HomeFeature"
 import HomeTab from "./components/HomeTab"
@@ -28,6 +30,7 @@ import {  _getHomeMultidata, _getHomeGoods } from "@/network/home";
 export default {
   components: {
     NavBar,
+    ToTop,
     HomeRecommend,
     HomeFeature,
     HomeTab
@@ -53,7 +56,6 @@ export default {
 </script>
 <style lang="less" scoped>
 #home {
-  height: 150vh;
   position: relative;
   margin-bottom: 49px;
 }

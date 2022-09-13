@@ -20,8 +20,15 @@
           class="tab-item"
           ref="goodsList"
         >
+          <a :href="item1.clientUrl"></a>
           <img :src="item1.show.img" alt="">
-          <p class="title">{{item1.title}}</p>
+          <div class="title">
+            <p>{{item1.title}}</p>
+            <div class="price">
+              <span style="font-size: 13px;">￥</span>
+              {{item1.price}}
+            </div>
+          </div>
         </div>
       </van-list>
       </van-tab>
@@ -100,20 +107,32 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 10px 10px;
+  background: rgba(0,0,0,.02)
 }
 .tab-item {
   margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  padding-bottom: 5px;
   img {
     width: 160px;
     height: 208px;
-    border-radius: 10px;
   }
   .title {
     width: 160px;
     font-size: 14px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    padding: 0 5px 5px;
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin: 5px 0;
+    }
+    .price {
+      font-size: 16px;
+      color: @pink;
+    }
   }
 }
 :deep .van-tabs__wrap {

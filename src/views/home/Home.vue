@@ -5,24 +5,26 @@
         蘑菇街
       </div>
     </nav-bar>
-    <!-- 首页轮播图 -->
-    <van-swipe :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="(item,index) in banner" :key="index">
-        <img v-lazy="item.image">
-      </van-swipe-item>
-    </van-swipe>
-    <!-- 首页推荐模块 -->
-    <home-recommend :recommends="recommends"></home-recommend>
-    <!-- 本周流行 -->
-    <home-feature></home-feature>
-    <!-- 分类 -->
-    <home-tab></home-tab>
-    <to-top></to-top>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <!-- 首页轮播图 -->
+      <van-swipe :autoplay="3000" indicator-color="white">
+        <van-swipe-item v-for="(item,index) in banner" :key="index">
+          <img v-lazy="item.image">
+        </van-swipe-item>
+      </van-swipe>
+      <!-- 首页推荐模块 -->
+      <home-recommend :recommends="recommends"></home-recommend>
+      <!-- 本周流行 -->
+      <home-feature></home-feature>
+      <!-- 分类 -->
+      <home-tab></home-tab>
+      <back-top></back-top>
+    </van-pull-refresh>
   </div>
 </template>
 <script>
 import NavBar from "@/components/common/navbar/NavBar"
-import ToTop from "@/components/common/totop/ToTop"
+import BackTop from "@/components/common/backtop/BackTop"
 import HomeRecommend from "./components/HomeRecommend"
 import HomeFeature from "./components/HomeFeature"
 import HomeTab from "./components/HomeTab"
@@ -30,7 +32,7 @@ import {  _getHomeMultidata, _getHomeGoods } from "@/network/home";
 export default {
   components: {
     NavBar,
-    ToTop,
+    BackTop,
     HomeRecommend,
     HomeFeature,
     HomeTab
@@ -41,16 +43,28 @@ export default {
       banner: [], // 轮播图数据
       recommends: [], // 推荐数据
       multidata: "",
+      isLoading: false
     };
   },
-  methods: {},
+  methods: {
+    async onRefresh() {
+      await this.getHomeDate()
+      setTimeout(() => {       
+        this.isLoading = false
+      },500)
+    },
+    getHomeDate() {
+      const res = _getHomeMultidata().then(res => {
+        this.banner = res.data.banner.list
+        this.recommends = res.data.recommend.list
+      });
+      return res
+    }
+  },
   watch: {},
   computed: {},
   created() {
-    _getHomeMultidata().then(res => {
-      this.banner = res.data.banner.list
-      this.recommends = res.data.recommend.list
-    });
+    this.getHomeDate()
   }
 }
 </script>

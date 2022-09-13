@@ -1,5 +1,5 @@
 <template>
-  <div class="rocket">
+  <div class="rocket" v-show="showIcon" @click="backTop">
     <svg class="iconfont" aria-hidden="true">
       <use xlink:href="#icon-rocket"></use>
     </svg>
@@ -7,21 +7,31 @@
 </template>
 <script>
 export default {
-  name: "ToTop",
+  name: "BackTop",
   components: {},
   props: {},
   data () {
     return {
-      show: false
+      showIcon: false
     };
   },
   methods: {
+    // 滚动条到1400时显示图标
     scroll(e) {
       const scrollTop = e.target.scrollingElement.scrollTop
-      console.log(scrollTop);
       if(scrollTop > 1400) {
-        this.show = true
+        this.showIcon = true
+      } else {
+        this.showIcon = false
       }
+    },
+    backTop() {
+      // window.scrollTo()方法的时候安卓或者ios会存在兼容性问题
+      const scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      })
     }
   },
   watch: {},
@@ -38,8 +48,8 @@ export default {
   border-radius: 50%;
   background-color: @pink;
   z-index: 99;
-  position: sticky;
-  right: 0;
+  position: fixed;
+  right: 5px;
   bottom: 100px;
   display: flex;
   justify-content: center;

@@ -7,7 +7,8 @@ import {
   Tab,
   Tabs,
   List,
-  PullRefresh
+  PullRefresh,
+  NavBar
 } from 'vant'
 
 export default function vant() {
@@ -18,4 +19,5 @@ export default function vant() {
     .use(Tabs)
     .use(List)
     .use(PullRefresh)
+    .use(NavBar)
 }

@@ -19,8 +19,8 @@
           :key="index1"
           class="tab-item"
           ref="goodsList"
+          @click="itemClick(item1)"
         >
-          <a :href="item1.clientUrl"></a>
           <img :src="item1.show.img" alt="">
           <div class="title">
             <p>{{item1.title}}</p>
@@ -83,6 +83,9 @@ export default {
         }
           this.loading = false
       });
+    },
+    itemClick(item) {
+      this.$router.push("/detail/" + item.iid)
     },
     onLoad(item) {
       item.page++

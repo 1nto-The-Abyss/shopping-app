@@ -17,7 +17,7 @@
       <!-- 本周流行 -->
       <home-feature></home-feature>
       <!-- 分类 -->
-      <home-tab></home-tab>
+      <home-tab ref="tab"></home-tab>
       <back-top></back-top>
     </van-pull-refresh>
   </div>
@@ -43,7 +43,9 @@ export default {
       banner: [], // 轮播图数据
       recommends: [], // 推荐数据
       multidata: "",
-      isLoading: false
+      isLoading: false,
+      activeName: "",
+      scrollY: ""
     };
   },
   methods: {
@@ -59,12 +61,31 @@ export default {
         this.recommends = res.data.recommend.list
       });
       return res
+    },
+    scroll(e) {
+      this.scrollTop = e.target.scrollingElement.scrollTop 
     }
   },
   watch: {},
   computed: {},
   created() {
     this.getHomeDate()
+    window.addEventListener('scroll',this.scroll)
+  },
+  activated() {
+    console.log("000",this.scrollTop);
+    
+    this.$refs.tab.activeName = this.activeName
+    window.scrollTo({
+      top: this.scrollTop
+    })
+  },
+  deactivated() {
+    console.log("111");
+    // 保留首页滚动条位置和tab页
+    this.activeName = this.$refs.tab.activeName
+    console.log(this.scrollTop);
+    
   }
 }
 </script>

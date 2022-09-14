@@ -19,10 +19,6 @@ const routes = [
     component: Home
   },
   {
-    path: '/home',
-    component: Home
-  },
-  {
     path: '/category',
     component: Category
   },

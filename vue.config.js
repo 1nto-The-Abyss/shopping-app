@@ -1,24 +1,13 @@
 module.exports = {
-  transpileDependencies: true,
-  css: {
-    loaderOptions: {
-      less: {
-        lessOptions: {
-          modifyVars: {
-            hack: `true; @import "@/assets/less/theme.less";`,
-          }
+    configureWebpack: {
+        resolve: {
+            alias: {
+                'assets': '@/assets',
+                'common': '@/common',
+                'components': '@/components',
+                'network': '@/network',
+                'views': '@/views'
+            }
         }
-      },
-      postcss: {
-        postcssOptions: {
-          plugins: [
-            require('postcss-pxtorem')({
-              rootValue: 37.5,
-              propList: ['*']
-            })
-          ]
-        }
-      }
-    },
-  }
+    }
 }

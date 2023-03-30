@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-const Home = () => import("@/views/home/Home")
-const Category = () => import("@/views/category/Category")
-const Profile = () => import("@/views/profile/Profile")
-const Detail = () => import("@/views/detail/Detail")
-const Shopcart = () => import("@/views/shopcart/Shopcart")
+// import { createRouter, createWebHistory } from 'vue-router'
 
+const Home = () => import('views//Home/Home')
+const Category = () => import('views/Category/Category')
+const Cart = () => import('views/Cart/Cart')
+const Profile = () => import('views/Profile/Profile')
+const Detail = () => import('views/detail/Detail')
 Vue.use(VueRouter)
-
 const routes = [
   {
     path: '',
@@ -23,23 +23,24 @@ const routes = [
     component: Category
   },
   {
+    path: '/cart',
+    component: Cart
+  },
+  {
     path: '/profile',
     component: Profile
   },
   {
-    path: '/detail/:id',
+    path: '/detail/:iid',
     component: Detail
-  },
-  {
-    path: '/shopcart',
-    component: Shopcart
   }
 ]
-
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+  routes,
+  mode: 'history'
 })
-
+// const router = createRouter({
+//   history: createWebHistory(),
+//   routes
+// })
 export default router

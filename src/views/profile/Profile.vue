@@ -1,27 +1,31 @@
 <template>
-  <div>
-    <nav-bar>
-      <div slot="center">
-        我的
-      </div>
-    </nav-bar>
-  </div>
+    <div>
+      <nav-bar class="nav-bar">
+        <template #center>我的档案</template>
+      </nav-bar>
+      <user-info/>
+      <list-view></list-view>
+    </div>
 </template>
+
 <script>
-import NavBar from "@/components/common/navbar/NavBar"
+import NavBar from 'components/common/navbar/NavBar'
+import UserInfo from './childComps/UserInfo'
+import ListView from './childComps/ListView'
 export default {
+  name: 'Profile',
   components: {
-    NavBar
-  },
-  props: {},
-  data () {
-    return {
-    };
-  },
-  methods: {},
-  watch: {},
-  computed: {},
+    NavBar,
+    UserInfo,
+    ListView
+  }
 }
 </script>
-<style lang="less" scoped>
+
+<style scoped>
+.nav-bar {
+    background: var(--color-tint);
+    color: #fff;
+    font-weight: bold;
+}
 </style>
